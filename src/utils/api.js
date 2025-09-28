@@ -1,9 +1,12 @@
-const API_URL = "http://localhost:5000/api";
+// api.js
+
+// Use your deployed backend URL here
+const API_URL = "https://notevault-backend-1.onrender.com/api";
 
 // Generic fetch helper
 const request = async (url, method = "GET", body = null, token = null) => {
   const headers = { "Content-Type": "application/json" };
-  if (token) headers["Authorization"] = `Bearer ${token}`; // Important
+  if (token) headers["Authorization"] = `Bearer ${token}`;
 
   const res = await fetch(`${API_URL}${url}`, {
     method,
@@ -26,4 +29,5 @@ export const fetchNotes = (token) => request("/notes", "GET", null, token);
 export const addNote = (note, token) => request("/notes", "POST", note, token);
 export const updateNote = (id, note, token) =>
   request(`/notes/${id}`, "PUT", note, token);
-export const deleteNote = (id, token) => request(`/notes/${id}`, "DELETE", null, token);
+export const deleteNote = (id, token) =>
+  request(`/notes/${id}`, "DELETE", null, token);
